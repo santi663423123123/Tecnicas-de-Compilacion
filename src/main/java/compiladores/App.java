@@ -12,7 +12,7 @@ public class App {
             compiladoresLexer lexer = new compiladoresLexer(input);
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             compiladoresParser parser = new compiladoresParser(tokens);
-            ParseTree tree = parser.programa(); // Asegúrate de que la regla de inicio es 'programa'
+            ParseTree tree = parser.programa();
     
             System.out.println(tree.toStringTree(parser));
 
