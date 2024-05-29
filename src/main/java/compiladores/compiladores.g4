@@ -4,9 +4,6 @@ grammar compiladores;
     package compiladores;
 }
 
-fragment Letra : [A-Za-z] ;
-fragment Digito : [0-9] ;
-
 PuntoComa : ';' ;
 ParAbierto  : '(' ;
 ParCerrado  : ')' ;
@@ -16,36 +13,45 @@ Asignacion : '=' ;
 Coma  : ',' ;
 Suma  : '+' ;
 Resta : '-' ;
-Multiplicacion : '*' ;
+Multiplicacion  : '*' ;
 Division   : '/' ;
 Modulo   : '%' ;
-Comparacion : '==' | '>' | '<' | '>=' | '<=' ;
+CorcheteIzquierdo : '['  ;
+CorcheteDerecho : ']'  ;
+Comparacion :  '==' | '>' | '<' | '=>' | '=<' | '||' | '&&' | '!=' ;
+Incrementador : '++' ;
+Decrementador : '--' ;
 
-Numero : Digito+ ;
+TipoDeDatos : 'void' | 'char' | 'short' | 'int' | 'long' | 'float' | 'double' | 'signed' | 'unsigned' | 'string' ;
 
-Entero : 'int' ;
 
-Si : 'if';
-Sino : 'else';
-Para : 'for';
-Mientras : 'while';
+fragment LETRA : [A-Za-z] ;
+fragment DIGITO : [0-9] ;
 
-Identificador : (Letra | '_')(Letra | Digito | '_')* ;
+NUMERO : DIGITO+ ;
+
+Si : 'if' ;
+Sino : 'else' ;
+Para : 'for' ;
+Mientras : 'while' ;
+
+Identificador : (LETRA | '_')(LETRA | DIGITO | '_')* ;
 
 EspacioBlanco : [ \t\n\r] -> skip ;
 
-programa : funcionMain EOF ;
+programa : instrucciones EOF ;
 
-funcionMain : 'int' 'main' ParAbierto ParCerrado bloque ;
+instrucciones : tipoinstruccion instrucciones
+              |
+              ;
 
-instrucciones : instruccion* ;
 
-instruccion : asignar
-            | declarar
+tipoinstruccion : asignar
+            | declaracionVariablelarar
             | bloque
             | mientras
             | si
-            | para
+            | ipara
             | llamadaFuncion
             ;
 
@@ -53,26 +59,70 @@ bloque : LlaveAbierta instrucciones LlaveCerrada ;
 
 asignar : Identificador Asignacion expresion PuntoComa ;
 
-declarar : Entero Identificador inicializar? listaIds? PuntoComa ;
+para : asignar
+      |  incremento
+      |  Identificador Comparacion Identificador
+      |  exp
+      |  term
+      |
+      ;
+declaracionVariablelarar : TipoDeDatos Identificador inicializar listaid PuntoComa ;
 
-inicializar : Asignacion expresion ;
 
-listaIds : Coma Identificador inicializar? listaIds? ;
+inicializar : Asignacion NUMERO
+               |
+               ;
 
-mientras : Mientras ParAbierto comparar ParCerrado bloque ;
+incremento : Identificador (Incrementador|Decrementador)  ;
 
-si : Si ParAbierto comparar ParCerrado bloque (Sino bloque)?;
+listaid : Coma Identificador inicializar listaid
+        |
+        ;
 
-para : Para ParAbierto (declarar | asignar |) comparar? PuntoComa asignar? ParCerrado bloque ;
+llamadaFuncion : TipoDeDatos Identificador ParAbierto  (TipoDeDatos parametrosdefuncion)? ParCerrado tipoinstruccion ;
 
-llamadaFuncion : Identificador ParAbierto parametros? ParCerrado PuntoComa ;
+definicionFuncion : Identificador listaid;
 
-parametros : expresion (Coma expresion)* ;
+parametrosdefuncion: definicionFuncion (Coma definicionFuncion)* ;
 
-expresion : termino ((Suma | Resta) termino)* ;
 
-termino : factor ((Multiplicacion | Division | Modulo) factor)* ;
+declaracionVariable : TipoDeDatos Identificador (Comparacion expresion)? PuntoComa ;
 
-factor : Numero | Identificador | ParAbierto expresion ParCerrado ;
+mientras : Mientras ParAbierto comparar ParCerrado tipoinstruccion ;
 
-comparar : expresion Comparacion expresion ;
+si : Si ParAbierto comparar ParCerrado tipoinstruccion Sino tipoinstruccion ;
+
+ipara : Para ParAbierto declaracionVariablelarar  comparar PuntoComa para ParCerrado tipoinstruccion ; 
+
+comparar : expresion Comparacion expresion 
+            | expresion Asignacion expresion
+            |
+            ; 
+
+ expresion : termino exp ;
+
+ termino : factor term ;
+
+ term : Multiplicacion factor term
+      | Division  factor term
+      | Modulo  factor term
+      |
+      ;
+      
+ factor : NUMERO
+        | Identificador
+        | ParAbierto expresion ParCerrado 
+        ;
+
+ exp : Suma termino exp
+     | Resta termino exp
+     |
+     ;
+
+/* a futuro :
+reconocer # librerías .
+printf - printc .
+// comentarios
+* punteros
+struct estructuras
+ */

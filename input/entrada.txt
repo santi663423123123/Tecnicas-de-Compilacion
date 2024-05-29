@@ -1,8 +1,30 @@
-int main() {
-    int a = 10;
-    int b;
-    b = 20;
-    while (a < b) {
-        a = a + 1;
+int main() 
+{
+    int x = 5;
+    int y = 10;
+    int c = 0 ;
+    float k = 0;
+    k = x / y;
+    k = x * c / y;
+    k = x + c + y;
+    if (x < y) {
+    k = c + y;
+    } else {
+    k = c - y;
     }
+
+    for (int i = 0; i < 5; i++) {
+         k = x / y; 
+    }
+
+    int contador = 0;
+    while (contador < 3) {
+        k = x / y; 
+    }
+
+    return 0;
+}
+
+void funcion(int a) {
+ k = x / y; 
 }

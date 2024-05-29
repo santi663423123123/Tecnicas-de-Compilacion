@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class App {
     public static void main(String[] args) throws IOException {
-        String fileName = "../test.c";
+        String fileName = "input/entrada.txt";
         try {
             CharStream input = CharStreams.fromFileName(fileName);
             compiladoresLexer lexer = new compiladoresLexer(input);
