@@ -1,4 +1,4 @@
-// Generated from c:/Users/Usuario/Downloads/BaseCompiladores-master/src/main/java/compiladores/compiladores.g4 by ANTLR 4.13.1
+// Generated from c:/Users/Usuario/Downloads/BaseCompiladores-master/src/main/java/compiladores/TP1.g4 by ANTLR 4.13.1
  
     package compiladores;
 
@@ -19,9 +19,11 @@ public class TP1Lexer extends Lexer {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		CI=1, CD=2, PYC=3, PA=4, PC=5, LLA=6, LLC=7, ASIGN=8, COMA=9, SUMA=10, 
-		RESTA=11, MULT=12, DIV=13, MOD=14, COMP=15, INC=16, DEC=17, TIPO=18, NUMERO=19, 
-		IF_TOKEN=20, ELSE_TOKEN=21, FOR=22, WHILE=23, ID=24, WS=25;
+		PuntoComa=1, ParAbierto=2, ParCerrado=3, LlaveAbierta=4, LlaveCerrada=5, 
+		Asignacion=6, Coma=7, Suma=8, Resta=9, Multiplicacion=10, Division=11, 
+		Modulo=12, CorcheteIzquierdo=13, CorcheteDerecho=14, Comparacion=15, Incrementador=16, 
+		Decrementador=17, TipoDeDatos=18, NUMERO=19, Si=20, Sino=21, Para=22, 
+		Mientras=23, Identificador=24, EspacioBlanco=25;
 	public static String[] channelNames = {
 		"DEFAULT_TOKEN_CHANNEL", "HIDDEN"
 	};
@@ -32,26 +34,30 @@ public class TP1Lexer extends Lexer {
 
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"CI", "CD", "PYC", "PA", "PC", "LLA", "LLC", "ASIGN", "COMA", "SUMA", 
-			"RESTA", "MULT", "DIV", "MOD", "COMP", "INC", "DEC", "TIPO", "LETRA", 
-			"DIGITO", "NUMERO", "IF_TOKEN", "ELSE_TOKEN", "FOR", "WHILE", "ID", "WS"
+			"PuntoComa", "ParAbierto", "ParCerrado", "LlaveAbierta", "LlaveCerrada", 
+			"Asignacion", "Coma", "Suma", "Resta", "Multiplicacion", "Division", 
+			"Modulo", "CorcheteIzquierdo", "CorcheteDerecho", "Comparacion", "Incrementador", 
+			"Decrementador", "TipoDeDatos", "LETRA", "DIGITO", "NUMERO", "Si", "Sino", 
+			"Para", "Mientras", "Identificador", "EspacioBlanco"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'['", "']'", "';'", "'('", "')'", "'{'", "'}'", "'='", "','", 
-			"'+'", "'-'", "'*'", "'/'", "'%'", null, "'++'", "'--'", null, null, 
+			null, "';'", "'('", "')'", "'{'", "'}'", "'='", "','", "'+'", "'-'", 
+			"'*'", "'/'", "'%'", "'['", "']'", null, "'++'", "'--'", null, null, 
 			"'if'", "'else'", "'for'", "'while'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, "CI", "CD", "PYC", "PA", "PC", "LLA", "LLC", "ASIGN", "COMA", "SUMA", 
-			"RESTA", "MULT", "DIV", "MOD", "COMP", "INC", "DEC", "TIPO", "NUMERO", 
-			"IF_TOKEN", "ELSE_TOKEN", "FOR", "WHILE", "ID", "WS"
+			null, "PuntoComa", "ParAbierto", "ParCerrado", "LlaveAbierta", "LlaveCerrada", 
+			"Asignacion", "Coma", "Suma", "Resta", "Multiplicacion", "Division", 
+			"Modulo", "CorcheteIzquierdo", "CorcheteDerecho", "Comparacion", "Incrementador", 
+			"Decrementador", "TipoDeDatos", "NUMERO", "Si", "Sino", "Para", "Mientras", 
+			"Identificador", "EspacioBlanco"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -95,7 +101,7 @@ public class TP1Lexer extends Lexer {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "compiladores.g4"; }
+	public String getGrammarFileName() { return "TP1.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }
@@ -174,16 +180,16 @@ public class TP1Lexer extends Lexer {
 		"\u0000\u0000\u0000+\u00a6\u0001\u0000\u0000\u0000-\u00a9\u0001\u0000\u0000"+
 		"\u0000/\u00ae\u0001\u0000\u0000\u00001\u00b2\u0001\u0000\u0000\u00003"+
 		"\u00ba\u0001\u0000\u0000\u00005\u00c4\u0001\u0000\u0000\u000078\u0005"+
-		"[\u0000\u00008\u0002\u0001\u0000\u0000\u00009:\u0005]\u0000\u0000:\u0004"+
-		"\u0001\u0000\u0000\u0000;<\u0005;\u0000\u0000<\u0006\u0001\u0000\u0000"+
-		"\u0000=>\u0005(\u0000\u0000>\b\u0001\u0000\u0000\u0000?@\u0005)\u0000"+
-		"\u0000@\n\u0001\u0000\u0000\u0000AB\u0005{\u0000\u0000B\f\u0001\u0000"+
-		"\u0000\u0000CD\u0005}\u0000\u0000D\u000e\u0001\u0000\u0000\u0000EF\u0005"+
-		"=\u0000\u0000F\u0010\u0001\u0000\u0000\u0000GH\u0005,\u0000\u0000H\u0012"+
-		"\u0001\u0000\u0000\u0000IJ\u0005+\u0000\u0000J\u0014\u0001\u0000\u0000"+
-		"\u0000KL\u0005-\u0000\u0000L\u0016\u0001\u0000\u0000\u0000MN\u0005*\u0000"+
-		"\u0000N\u0018\u0001\u0000\u0000\u0000OP\u0005/\u0000\u0000P\u001a\u0001"+
-		"\u0000\u0000\u0000QR\u0005%\u0000\u0000R\u001c\u0001\u0000\u0000\u0000"+
+		";\u0000\u00008\u0002\u0001\u0000\u0000\u00009:\u0005(\u0000\u0000:\u0004"+
+		"\u0001\u0000\u0000\u0000;<\u0005)\u0000\u0000<\u0006\u0001\u0000\u0000"+
+		"\u0000=>\u0005{\u0000\u0000>\b\u0001\u0000\u0000\u0000?@\u0005}\u0000"+
+		"\u0000@\n\u0001\u0000\u0000\u0000AB\u0005=\u0000\u0000B\f\u0001\u0000"+
+		"\u0000\u0000CD\u0005,\u0000\u0000D\u000e\u0001\u0000\u0000\u0000EF\u0005"+
+		"+\u0000\u0000F\u0010\u0001\u0000\u0000\u0000GH\u0005-\u0000\u0000H\u0012"+
+		"\u0001\u0000\u0000\u0000IJ\u0005*\u0000\u0000J\u0014\u0001\u0000\u0000"+
+		"\u0000KL\u0005/\u0000\u0000L\u0016\u0001\u0000\u0000\u0000MN\u0005%\u0000"+
+		"\u0000N\u0018\u0001\u0000\u0000\u0000OP\u0005[\u0000\u0000P\u001a\u0001"+
+		"\u0000\u0000\u0000QR\u0005]\u0000\u0000R\u001c\u0001\u0000\u0000\u0000"+
 		"ST\u0005=\u0000\u0000Ta\u0005=\u0000\u0000Ua\u0007\u0000\u0000\u0000V"+
 		"W\u0005=\u0000\u0000Wa\u0005>\u0000\u0000XY\u0005=\u0000\u0000Ya\u0005"+
 		"<\u0000\u0000Z[\u0005|\u0000\u0000[a\u0005|\u0000\u0000\\]\u0005&\u0000"+

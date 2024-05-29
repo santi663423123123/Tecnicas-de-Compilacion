@@ -1,4 +1,4 @@
-grammar compiladores;
+grammar TP1;
 
 @header { 
     package compiladores;
@@ -119,10 +119,11 @@ comparar : expresion Comparacion expresion
      |
      ;
 
-/* a futuro :
-reconocer # librerías .
-printf - printc .
-// comentarios
-* punteros
-struct estructuras
+/*
+a futuro :
+-- reconocer # librerías .
+-- printf - printc .
+-- // comentarios
+-- * punteros
+-- struct estructuras
  */
